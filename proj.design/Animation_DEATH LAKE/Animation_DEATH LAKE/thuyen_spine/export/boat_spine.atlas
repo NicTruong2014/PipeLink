@@ -1,0 +1,892 @@
+
+boat_spine.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bong_cheo_L
+  rotate: true
+  xy: 1762, 121
+  size: 242, 153
+  orig: 242, 153
+  offset: 0, 0
+  index: -1
+bong_cheo_R
+  rotate: true
+  xy: 1762, 365
+  size: 241, 157
+  orig: 241, 157
+  offset: 0, 0
+  index: -1
+cheo_L
+  rotate: false
+  xy: 1762, 786
+  size: 237, 178
+  orig: 237, 178
+  offset: 0, 0
+  index: -1
+cheo_R
+  rotate: false
+  xy: 1762, 608
+  size: 235, 176
+  orig: 235, 176
+  offset: 0, 0
+  index: -1
+cheo_eff/wave_1_00000
+  rotate: false
+  xy: 1921, 356
+  size: 100, 250
+  orig: 100, 250
+  offset: 0, 0
+  index: -1
+cheo_eff/wave_1_00001
+  rotate: false
+  xy: 1917, 104
+  size: 100, 250
+  orig: 100, 250
+  offset: 0, 0
+  index: -1
+cheo_eff/wave_1_00002
+  rotate: true
+  xy: 1762, 2
+  size: 100, 250
+  orig: 100, 250
+  offset: 0, 0
+  index: -1
+circle_boat/circle_boat_00000
+  rotate: false
+  xy: 2, 1546
+  size: 350, 500
+  orig: 350, 500
+  offset: 0, 0
+  index: -1
+circle_boat/circle_boat_00001
+  rotate: false
+  xy: 2, 1044
+  size: 350, 500
+  orig: 350, 500
+  offset: 0, 0
+  index: -1
+circle_boat/circle_boat_00002
+  rotate: false
+  xy: 354, 1546
+  size: 350, 500
+  orig: 350, 500
+  offset: 0, 0
+  index: -1
+circle_boat/circle_boat_00003
+  rotate: false
+  xy: 2, 542
+  size: 350, 500
+  orig: 350, 500
+  offset: 0, 0
+  index: -1
+circle_boat/circle_boat_00004
+  rotate: false
+  xy: 354, 1044
+  size: 350, 500
+  orig: 350, 500
+  offset: 0, 0
+  index: -1
+circle_boat/circle_boat_00005
+  rotate: false
+  xy: 706, 1546
+  size: 350, 500
+  orig: 350, 500
+  offset: 0, 0
+  index: -1
+circle_boat/circle_boat_00006
+  rotate: false
+  xy: 2, 40
+  size: 350, 500
+  orig: 350, 500
+  offset: 0, 0
+  index: -1
+circle_boat/circle_boat_00007
+  rotate: false
+  xy: 354, 542
+  size: 350, 500
+  orig: 350, 500
+  offset: 0, 0
+  index: -1
+circle_boat/circle_boat_00008
+  rotate: false
+  xy: 706, 1044
+  size: 350, 500
+  orig: 350, 500
+  offset: 0, 0
+  index: -1
+circle_boat/circle_boat_00009
+  rotate: false
+  xy: 1058, 1546
+  size: 350, 500
+  orig: 350, 500
+  offset: 0, 0
+  index: -1
+circle_boat/circle_boat_00010
+  rotate: false
+  xy: 354, 40
+  size: 350, 500
+  orig: 350, 500
+  offset: 0, 0
+  index: -1
+circle_boat/circle_boat_00011
+  rotate: false
+  xy: 706, 542
+  size: 350, 500
+  orig: 350, 500
+  offset: 0, 0
+  index: -1
+circle_boat/circle_boat_00012
+  rotate: false
+  xy: 1058, 1044
+  size: 350, 500
+  orig: 350, 500
+  offset: 0, 0
+  index: -1
+circle_boat/circle_boat_00013
+  rotate: false
+  xy: 1410, 1546
+  size: 350, 500
+  orig: 350, 500
+  offset: 0, 0
+  index: -1
+circle_boat/circle_boat_00014
+  rotate: false
+  xy: 706, 40
+  size: 350, 500
+  orig: 350, 500
+  offset: 0, 0
+  index: -1
+circle_boat/circle_boat_00015
+  rotate: false
+  xy: 1058, 542
+  size: 350, 500
+  orig: 350, 500
+  offset: 0, 0
+  index: -1
+circle_boat/circle_boat_00016
+  rotate: false
+  xy: 1410, 1044
+  size: 350, 500
+  orig: 350, 500
+  offset: 0, 0
+  index: -1
+circle_boat/circle_boat_00017
+  rotate: false
+  xy: 1058, 40
+  size: 350, 500
+  orig: 350, 500
+  offset: 0, 0
+  index: -1
+circle_boat/circle_boat_00018
+  rotate: false
+  xy: 1410, 542
+  size: 350, 500
+  orig: 350, 500
+  offset: 0, 0
+  index: -1
+circle_boat/circle_boat_00019
+  rotate: false
+  xy: 1410, 40
+  size: 350, 500
+  orig: 350, 500
+  offset: 0, 0
+  index: -1
+manh_3
+  rotate: true
+  xy: 2001, 801
+  size: 49, 41
+  orig: 49, 41
+  offset: 0, 0
+  index: -1
+ship
+  rotate: false
+  xy: 1762, 1504
+  size: 261, 542
+  orig: 261, 542
+  offset: 0, 0
+  index: -1
+show
+  rotate: false
+  xy: 1762, 966
+  size: 256, 536
+  orig: 256, 536
+  offset: 0, 0
+  index: -1
+tay_L1
+  rotate: false
+  xy: 2001, 909
+  size: 45, 55
+  orig: 45, 55
+  offset: 0, 0
+  index: -1
+tay_L2
+  rotate: false
+  xy: 1999, 730
+  size: 46, 54
+  orig: 46, 54
+  offset: 0, 0
+  index: -1
+tay_R1
+  rotate: false
+  xy: 2001, 852
+  size: 45, 55
+  orig: 45, 55
+  offset: 0, 0
+  index: -1
+tay_R2
+  rotate: false
+  xy: 1999, 674
+  size: 46, 54
+  orig: 46, 54
+  offset: 0, 0
+  index: -1
+
+boat_spine2.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cheo_eff/wave_1_00003
+  rotate: false
+  xy: 1910, 76
+  size: 100, 250
+  orig: 100, 250
+  offset: 0, 0
+  index: -1
+cheo_eff/wave_1_00004
+  rotate: false
+  xy: 1810, 880
+  size: 100, 250
+  orig: 100, 250
+  offset: 0, 0
+  index: -1
+cheo_eff/wave_1_00005
+  rotate: false
+  xy: 1912, 880
+  size: 100, 250
+  orig: 100, 250
+  offset: 0, 0
+  index: -1
+cheo_eff/wave_1_00006
+  rotate: false
+  xy: 1914, 628
+  size: 100, 250
+  orig: 100, 250
+  offset: 0, 0
+  index: -1
+cheo_eff/wave_1_00007
+  rotate: false
+  xy: 1914, 376
+  size: 100, 250
+  orig: 100, 250
+  offset: 0, 0
+  index: -1
+crack/par_00005
+  rotate: false
+  xy: 2, 1634
+  size: 400, 400
+  orig: 400, 400
+  offset: 0, 0
+  index: -1
+crack/par_00006
+  rotate: false
+  xy: 2, 1232
+  size: 400, 400
+  orig: 400, 400
+  offset: 0, 0
+  index: -1
+crack/par_00007
+  rotate: false
+  xy: 2, 830
+  size: 400, 400
+  orig: 400, 400
+  offset: 0, 0
+  index: -1
+crack/par_00008
+  rotate: false
+  xy: 2, 428
+  size: 400, 400
+  orig: 400, 400
+  offset: 0, 0
+  index: -1
+crack/par_00009
+  rotate: false
+  xy: 2, 26
+  size: 400, 400
+  orig: 400, 400
+  offset: 0, 0
+  index: -1
+crack/par_00010
+  rotate: false
+  xy: 404, 1634
+  size: 400, 400
+  orig: 400, 400
+  offset: 0, 0
+  index: -1
+crack/par_00011
+  rotate: false
+  xy: 806, 1634
+  size: 400, 400
+  orig: 400, 400
+  offset: 0, 0
+  index: -1
+crack/par_00012
+  rotate: false
+  xy: 1208, 1634
+  size: 400, 400
+  orig: 400, 400
+  offset: 0, 0
+  index: -1
+crack/par_00013
+  rotate: false
+  xy: 1610, 1634
+  size: 400, 400
+  orig: 400, 400
+  offset: 0, 0
+  index: -1
+crack/par_00014
+  rotate: false
+  xy: 404, 1232
+  size: 400, 400
+  orig: 400, 400
+  offset: 0, 0
+  index: -1
+crack/par_00015
+  rotate: false
+  xy: 404, 830
+  size: 400, 400
+  orig: 400, 400
+  offset: 0, 0
+  index: -1
+manh_2
+  rotate: false
+  xy: 1910, 2
+  size: 88, 72
+  orig: 88, 72
+  offset: 0, 0
+  index: -1
+wave/wave_00000
+  rotate: false
+  xy: 404, 328
+  size: 300, 500
+  orig: 300, 500
+  offset: 0, 0
+  index: -1
+wave/wave_00001
+  rotate: true
+  xy: 404, 26
+  size: 300, 500
+  orig: 300, 500
+  offset: 0, 0
+  index: -1
+wave/wave_00002
+  rotate: false
+  xy: 706, 328
+  size: 300, 500
+  orig: 300, 500
+  offset: 0, 0
+  index: -1
+wave/wave_00003
+  rotate: true
+  xy: 906, 26
+  size: 300, 500
+  orig: 300, 500
+  offset: 0, 0
+  index: -1
+wave/wave_00004
+  rotate: false
+  xy: 806, 1132
+  size: 300, 500
+  orig: 300, 500
+  offset: 0, 0
+  index: -1
+wave/wave_00005
+  rotate: true
+  xy: 806, 830
+  size: 300, 500
+  orig: 300, 500
+  offset: 0, 0
+  index: -1
+wave/wave_00006
+  rotate: false
+  xy: 1108, 1132
+  size: 300, 500
+  orig: 300, 500
+  offset: 0, 0
+  index: -1
+wave/wave_00007
+  rotate: false
+  xy: 1008, 328
+  size: 300, 500
+  orig: 300, 500
+  offset: 0, 0
+  index: -1
+wave/wave_00008
+  rotate: true
+  xy: 1308, 830
+  size: 300, 500
+  orig: 300, 500
+  offset: 0, 0
+  index: -1
+wave/wave_00009
+  rotate: false
+  xy: 1410, 1132
+  size: 300, 500
+  orig: 300, 500
+  offset: 0, 0
+  index: -1
+wave/wave_00010
+  rotate: false
+  xy: 1712, 1132
+  size: 300, 500
+  orig: 300, 500
+  offset: 0, 0
+  index: -1
+wave/wave_00011
+  rotate: false
+  xy: 1310, 328
+  size: 300, 500
+  orig: 300, 500
+  offset: 0, 0
+  index: -1
+wave/wave_00012
+  rotate: true
+  xy: 1408, 26
+  size: 300, 500
+  orig: 300, 500
+  offset: 0, 0
+  index: -1
+wave/wave_00013
+  rotate: false
+  xy: 1612, 328
+  size: 300, 500
+  orig: 300, 500
+  offset: 0, 0
+  index: -1
+
+boat_spine3.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+boat_damages_bite
+  rotate: false
+  xy: 1664, 89
+  size: 119, 144
+  orig: 119, 144
+  offset: 0, 0
+  index: -1
+bong
+  rotate: true
+  xy: 1916, 1909
+  size: 136, 130
+  orig: 136, 130
+  offset: 0, 0
+  index: -1
+cheo_eff/wave_1_00008
+  rotate: false
+  xy: 1814, 1795
+  size: 100, 250
+  orig: 100, 250
+  offset: 0, 0
+  index: -1
+cheo_eff/wave_1_00009
+  rotate: true
+  xy: 908, 137
+  size: 100, 250
+  orig: 100, 250
+  offset: 0, 0
+  index: -1
+cheo_eff/wave_1_00010
+  rotate: false
+  xy: 1814, 1543
+  size: 100, 250
+  orig: 100, 250
+  offset: 0, 0
+  index: -1
+cheo_eff/wave_1_00011
+  rotate: false
+  xy: 1916, 1657
+  size: 100, 250
+  orig: 100, 250
+  offset: 0, 0
+  index: -1
+cheo_eff/wave_1_00012
+  rotate: false
+  xy: 1814, 1291
+  size: 100, 250
+  orig: 100, 250
+  offset: 0, 0
+  index: -1
+cheo_eff/wave_1_00013
+  rotate: false
+  xy: 1916, 1405
+  size: 100, 250
+  orig: 100, 250
+  offset: 0, 0
+  index: -1
+cheo_eff/wave_1_00014
+  rotate: false
+  xy: 1814, 1039
+  size: 100, 250
+  orig: 100, 250
+  offset: 0, 0
+  index: -1
+cheo_eff/wave_1_00015
+  rotate: false
+  xy: 1916, 1153
+  size: 100, 250
+  orig: 100, 250
+  offset: 0, 0
+  index: -1
+cheo_eff/wave_1_00016
+  rotate: false
+  xy: 1814, 787
+  size: 100, 250
+  orig: 100, 250
+  offset: 0, 0
+  index: -1
+cheo_eff/wave_1_00017
+  rotate: false
+  xy: 1916, 901
+  size: 100, 250
+  orig: 100, 250
+  offset: 0, 0
+  index: -1
+cheo_eff/wave_1_00018
+  rotate: false
+  xy: 1814, 535
+  size: 100, 250
+  orig: 100, 250
+  offset: 0, 0
+  index: -1
+cheo_eff/wave_1_00019
+  rotate: false
+  xy: 1916, 649
+  size: 100, 250
+  orig: 100, 250
+  offset: 0, 0
+  index: -1
+cheo_eff/wave_1_00020
+  rotate: false
+  xy: 1814, 283
+  size: 100, 250
+  orig: 100, 250
+  offset: 0, 0
+  index: -1
+cheo_eff/wave_1_00021
+  rotate: false
+  xy: 1916, 397
+  size: 100, 250
+  orig: 100, 250
+  offset: 0, 0
+  index: -1
+cheo_eff/wave_1_00022
+  rotate: true
+  xy: 1210, 235
+  size: 100, 250
+  orig: 100, 250
+  offset: 0, 0
+  index: -1
+cheo_eff/wave_1_00023
+  rotate: true
+  xy: 908, 35
+  size: 100, 250
+  orig: 100, 250
+  offset: 0, 0
+  index: -1
+cheo_eff/wave_1_00024
+  rotate: true
+  xy: 1160, 133
+  size: 100, 250
+  orig: 100, 250
+  offset: 0, 0
+  index: -1
+cheo_eff/wave_1_00025
+  rotate: true
+  xy: 1160, 31
+  size: 100, 250
+  orig: 100, 250
+  offset: 0, 0
+  index: -1
+cheo_eff/wave_1_00026
+  rotate: true
+  xy: 1412, 133
+  size: 100, 250
+  orig: 100, 250
+  offset: 0, 0
+  index: -1
+cheo_eff/wave_1_00027
+  rotate: true
+  xy: 1412, 31
+  size: 100, 250
+  orig: 100, 250
+  offset: 0, 0
+  index: -1
+cheo_eff/wave_1_00028
+  rotate: false
+  xy: 1916, 145
+  size: 100, 250
+  orig: 100, 250
+  offset: 0, 0
+  index: -1
+cheo_eff/wave_1_00029
+  rotate: false
+  xy: 1814, 31
+  size: 100, 250
+  orig: 100, 250
+  offset: 0, 0
+  index: -1
+crack/circle_00005
+  rotate: false
+  xy: 1210, 1243
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+crack/circle_00006
+  rotate: false
+  xy: 1512, 1745
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+crack/circle_00007
+  rotate: false
+  xy: 908, 239
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+crack/circle_00008
+  rotate: false
+  xy: 1210, 941
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+crack/circle_00009
+  rotate: false
+  xy: 1512, 1443
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+crack/circle_00010
+  rotate: false
+  xy: 1210, 639
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+crack/circle_00011
+  rotate: false
+  xy: 1512, 1141
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+crack/circle_00012
+  rotate: false
+  xy: 1210, 337
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+crack/circle_00013
+  rotate: false
+  xy: 1512, 839
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+crack/circle_00014
+  rotate: false
+  xy: 1512, 537
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+crack/circle_00015
+  rotate: false
+  xy: 1512, 235
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+dau
+  rotate: true
+  xy: 1916, 34
+  size: 109, 104
+  orig: 109, 104
+  offset: 0, 0
+  index: -1
+than
+  rotate: false
+  xy: 1664, 2
+  size: 129, 85
+  orig: 129, 85
+  offset: 0, 0
+  index: -1
+wave/wave_00014
+  rotate: false
+  xy: 2, 1545
+  size: 300, 500
+  orig: 300, 500
+  offset: 0, 0
+  index: -1
+wave/wave_00015
+  rotate: false
+  xy: 2, 1043
+  size: 300, 500
+  orig: 300, 500
+  offset: 0, 0
+  index: -1
+wave/wave_00016
+  rotate: false
+  xy: 304, 1545
+  size: 300, 500
+  orig: 300, 500
+  offset: 0, 0
+  index: -1
+wave/wave_00017
+  rotate: false
+  xy: 2, 541
+  size: 300, 500
+  orig: 300, 500
+  offset: 0, 0
+  index: -1
+wave/wave_00018
+  rotate: false
+  xy: 304, 1043
+  size: 300, 500
+  orig: 300, 500
+  offset: 0, 0
+  index: -1
+wave/wave_00019
+  rotate: false
+  xy: 606, 1545
+  size: 300, 500
+  orig: 300, 500
+  offset: 0, 0
+  index: -1
+wave/wave_00020
+  rotate: false
+  xy: 2, 39
+  size: 300, 500
+  orig: 300, 500
+  offset: 0, 0
+  index: -1
+wave/wave_00021
+  rotate: false
+  xy: 304, 541
+  size: 300, 500
+  orig: 300, 500
+  offset: 0, 0
+  index: -1
+wave/wave_00022
+  rotate: false
+  xy: 606, 1043
+  size: 300, 500
+  orig: 300, 500
+  offset: 0, 0
+  index: -1
+wave/wave_00023
+  rotate: false
+  xy: 908, 1545
+  size: 300, 500
+  orig: 300, 500
+  offset: 0, 0
+  index: -1
+wave/wave_00024
+  rotate: false
+  xy: 304, 39
+  size: 300, 500
+  orig: 300, 500
+  offset: 0, 0
+  index: -1
+wave/wave_00025
+  rotate: false
+  xy: 606, 541
+  size: 300, 500
+  orig: 300, 500
+  offset: 0, 0
+  index: -1
+wave/wave_00026
+  rotate: false
+  xy: 908, 1043
+  size: 300, 500
+  orig: 300, 500
+  offset: 0, 0
+  index: -1
+wave/wave_00027
+  rotate: false
+  xy: 1210, 1545
+  size: 300, 500
+  orig: 300, 500
+  offset: 0, 0
+  index: -1
+wave/wave_00028
+  rotate: false
+  xy: 606, 39
+  size: 300, 500
+  orig: 300, 500
+  offset: 0, 0
+  index: -1
+wave/wave_00029
+  rotate: false
+  xy: 908, 541
+  size: 300, 500
+  orig: 300, 500
+  offset: 0, 0
+  index: -1
+
+boat_spine4.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+chan_L
+  rotate: true
+  xy: 222, 24
+  size: 61, 70
+  orig: 61, 70
+  offset: 0, 0
+  index: -1
+chan_R
+  rotate: true
+  xy: 294, 22
+  size: 63, 68
+  orig: 63, 68
+  offset: 0, 0
+  index: -1
+cheo
+  rotate: false
+  xy: 140, 17
+  size: 80, 68
+  orig: 80, 68
+  offset: 0, 0
+  index: -1
+manh_1
+  rotate: false
+  xy: 364, 26
+  size: 55, 59
+  orig: 55, 59
+  offset: 0, 0
+  index: -1
+tay_L3
+  rotate: false
+  xy: 2, 2
+  size: 67, 83
+  orig: 67, 83
+  offset: 0, 0
+  index: -1
+tay_R3
+  rotate: false
+  xy: 71, 2
+  size: 67, 83
+  orig: 67, 83
+  offset: 0, 0
+  index: -1

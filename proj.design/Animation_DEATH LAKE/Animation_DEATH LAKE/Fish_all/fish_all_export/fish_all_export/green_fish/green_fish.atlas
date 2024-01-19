@@ -1,0 +1,34 @@
+
+green_fish.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+green_fish
+  rotate: false
+  xy: 91, 44
+  size: 41, 154
+  orig: 41, 154
+  offset: 0, 0
+  index: -1
+green_fish_shadow
+  rotate: false
+  xy: 0, 44
+  size: 89, 154
+  orig: 89, 154
+  offset: 0, 0
+  index: -1
+vay_l
+  rotate: false
+  xy: 134, 162
+  size: 31, 36
+  orig: 31, 36
+  offset: 0, 0
+  index: -1
+vay_r
+  rotate: false
+  xy: 0, 0
+  size: 32, 42
+  orig: 32, 42
+  offset: 0, 0
+  index: -1

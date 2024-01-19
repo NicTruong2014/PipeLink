@@ -1,0 +1,48 @@
+
+yellow_fish.jpg
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+vay_l1
+  rotate: false
+  xy: 158, 47
+  size: 31, 36
+  orig: 31, 36
+  offset: 0, 0
+  index: -1
+vay_l2
+  rotate: false
+  xy: 36, 2
+  size: 23, 33
+  orig: 23, 33
+  offset: 0, 0
+  index: -1
+vay_r1
+  rotate: false
+  xy: 2, 2
+  size: 32, 33
+  orig: 32, 33
+  offset: 0, 0
+  index: -1
+vay_r2
+  rotate: false
+  xy: 61, 2
+  size: 23, 33
+  orig: 23, 33
+  offset: 0, 0
+  index: -1
+yellow_fish
+  rotate: true
+  xy: 158, 85
+  size: 41, 154
+  orig: 41, 154
+  offset: 0, 0
+  index: -1
+yellow_fish_shadow
+  rotate: true
+  xy: 2, 37
+  size: 89, 154
+  orig: 89, 154
+  offset: 0, 0
+  index: -1
