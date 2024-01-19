@@ -69,7 +69,6 @@ void GameScene::StartGame()
 
     _totalTime = 120;
 
-    this->unschedule("Countdown");
     this->schedule(schedule_selector(GameScene::updateTime), 1.0f);
 }
 
@@ -365,114 +364,76 @@ void GameScene::InitUI()
     auto origin = Director::getInstance()->getVisibleOrigin();
     auto level = DataManager::getInstance()->GetLevel();
 
+    auto posTopTime = Vec2(-158, 0);
+    auto posTopLevel = Vec2(-424, 0);
+    auto posTopStar = Vec2(160, 0);
+    auto posTopRank = Vec2(508, 0);
+    auto posTopPause = Vec2(758, 0);
+
     //Time
-    auto topTime = Sprite::create("Sprites/player/sh_player_bar_time.png");
+    auto topTime = Sprite::create("Sprites/News/ui/pl_ui_time.png");
     topTime->setScale(_scale);
-    topTime->setPosition(Vec2(visibleSize.width / 2 - 200, visibleSize.height - topTime->getContentSize().height + 20));
+    topTime->setPosition(Vec2(visibleSize.width / 2 + posTopTime.x, visibleSize.height - topTime->getContentSize().height + 20));
     topTime->setZOrder(ORDER_UI);
     this->addChild(topTime);
 
-    _txtTime = cocos2d::Label::createWithTTF("00:00", "fonts/SVNMergeBold.ttf", 35);
-    _txtTime->setPosition(Vec2(topTime->getContentSize().width / 2 + 80, topTime->getContentSize().height / 2 + 10) * _scale);
+    auto totalTime = (int)_totalTime;
+    auto formattedTime = StringUtils::format("%02d:%02d", totalTime / 60, totalTime % 60);
+    _txtTime = cocos2d::Label::createWithTTF("00:00", "fonts/SVNMergeBold.ttf", 40);
+    _txtTime->setString(formattedTime);
+    _txtTime->setPosition(Vec2(topTime->getContentSize().width / 2 + 50, topTime->getContentSize().height / 2 + 5));
     _txtTime->setAnchorPoint({ 0.5,0.5 });
     _txtTime->setZOrder(ORDER_UI);
     topTime->addChild(_txtTime);
 
     //Top
-    auto topLv = Sprite::create("Sprites/player/sh_player_bar_level.png");
+    auto topLv = Sprite::create("Sprites/News/ui/pl_ui_level.png");
     topLv->setScale(_scale);
-    topLv->setPosition(Vec2(visibleSize.width / 2 - 430, visibleSize.height - topLv->getContentSize().height + 20));
+    topLv->setPosition(Vec2(visibleSize.width / 2 + posTopLevel.x, visibleSize.height - topTime->getContentSize().height + 20));
     topLv->setLocalZOrder(ORDER_UI);
     this->addChild(topLv);
 
-    auto labelLevel = cocos2d::Label::createWithTTF("999999", "fonts/SVNMergeBold.ttf", 35);
-    labelLevel->setPosition(Vec2(topLv->getContentSize().width / 2 - 5, topLv->getContentSize().height / 2 + 10) * _scale);
+    auto labelLevel = cocos2d::Label::createWithTTF("999999", "fonts/SVNMergeBold.ttf", 40);
+    labelLevel->setPosition(Vec2(topLv->getContentSize().width / 2 + 50, topLv->getContentSize().height / 2 + 5));
     labelLevel->setAnchorPoint({ 0.5,0.5 });
     labelLevel->setString(std::to_string(level));
     labelLevel->setZOrder(ORDER_UI);
     topLv->addChild(labelLevel);
 
-    _star = 3;
-    _levelStar = Sprite::create("Sprites/player/sh_player_star_3.png");
+    _levelStar = Sprite::create("Sprites/News/ui/pl_ui_star.png");
     _levelStar->setScale(_scale);
-    _levelStar->setPosition(Vec2(topLv->getContentSize().width / 2 + 130, topLv->getContentSize().height / 2 + 10) * _scale);
+    _levelStar->setPosition(Vec2(visibleSize.width / 2 + posTopStar.x, visibleSize.height - topTime->getContentSize().height + 20));
     _levelStar->setZOrder(ORDER_UI);
-    topLv->addChild(_levelStar);
+    this->addChild(_levelStar);
+
+    for (auto i = 0; i < 3; i++)
+    {
+        auto star = Sprite::create("Sprites/News/ui/pl_ui_star_off.png");
+
+        star->setPosition(Vec2(_levelStar->getContentSize().width / 2 + i * 65 - 15, _levelStar->getContentSize().height / 2 + 5));
+        _levelStar->addChild(star);
+    }
 
     //Rank
-    auto topRank = Sprite::create("Sprites/player/sh_player_bar_score.png");
+    auto topRank = Sprite::create("Sprites/News/ui/pl_ui_score.png");
     topRank->setScale(_scale);
-    topRank->setPosition(Vec2(topTime->getPositionX() + topTime->getContentSize().width, topLv->getPositionY()));
+    topRank->setPosition(Vec2(visibleSize.width / 2 + posTopRank.x, visibleSize.height - topTime->getContentSize().height + 20));
     topRank->setZOrder(ORDER_UI);
     this->addChild(topRank);
 
-    _txtScore = cocos2d::Label::createWithTTF("1", "fonts/SVNMergeBold.ttf", 35);
+    _txtScore = cocos2d::Label::createWithTTF("1", "fonts/SVNMergeBold.ttf", 40);
     _txtScore->setAnchorPoint({ 0.5,0.5 });
-    _txtScore->setPosition(Vec2(topRank->getContentSize().width / 2 + 90, topRank->getContentSize().height / 2 + 10) * _scale);
+    _txtScore->setPosition(Vec2(topRank->getContentSize().width / 2 + 50, topRank->getContentSize().height / 2 + 5));
     _txtScore->enableOutline(Color4B(0, 0, 0, 255), 1);
     _txtScore->setString(std::to_string(_score));
     _txtScore->setZOrder(ORDER_UI);
     topRank->addChild(_txtScore);
 
-    //Money
-    auto topMoney = Sprite::create("Sprites/player/sh_player_bar_money.png");
-    topMoney->setScale(_scale);
-    topMoney->setPosition(Vec2(topRank->getPositionX() + topRank->getContentSize().width - 30, topLv->getPositionY()));
-    topMoney->setZOrder(ORDER_UI);
-    this->addChild(topMoney);
-
-    auto money = DataManager::getInstance()->GetMoney();
-    _txtMoney = cocos2d::Label::createWithTTF("99.000.000", "fonts/SVNMergeBold.ttf", 35);
-    _txtMoney->setPosition(Vec2(topMoney->getContentSize().width / 2 + 90, topMoney->getContentSize().height / 2 + 10) * _scale);
-    _txtMoney->setPosition(Vec2(topMoney->getContentSize().width / 2 + 90, topMoney->getContentSize().height / 2 + 10) * _scale);
-    _txtMoney->setAnchorPoint({ 0.5,0.5 });
-    _txtMoney->setString(Utils::FormatIntToString(DataManager::getInstance()->GetMoney()));
-    _txtMoney->setZOrder(ORDER_UI);
-    topMoney->addChild(_txtMoney);
-
-    //Hp
-    auto topHp = Sprite::create("Sprites/player/sh_player_bar_heart.png"); 
-    topHp->setScale(_scale);
-    topHp->setPosition(Vec2(topLv->getPositionX() - 21, topLv->getPositionY() - 70));
-    topHp->setZOrder(ORDER_UI);
-    this->addChild(topHp);
-     
-    //live
-    DataManager::getInstance()->SetLive(3);
-    auto live = DataManager::getInstance()->GetLive();
-    for (auto i = 0; i < live; i++)
-    {
-        auto live = Sprite::create("Sprites/player/sh_player_heart.png");
-
-        _lives.push_back(live);
-        live->setPosition(Vec2(topHp->getContentSize().width / 2 - 13 + i * (live->getContentSize().width + 5), topHp->getContentSize().height / 2));
-        live->setZOrder(ORDER_UI);
-        topHp->addChild(live);
-    }
-
-    //Hp
-    auto topSkill = Sprite::create("Sprites/player/sh_player_bar_apple_effect.png");
-    topSkill->setScale(_scale);
-    topSkill->setPosition(Vec2(topMoney->getPositionX() + 53, topLv->getPositionY() - 70));
-    topSkill->setZOrder(ORDER_UI);
-    this->addChild(topSkill);
-
-    _skill = Sprite::create();
-    _skill->setPosition(Vec2(topSkill->getContentSize().width / 2 - 60, topSkill->getContentSize().height / 2));
-    _skill->setZOrder(ORDER_UI);
-    topSkill->addChild(_skill);
-
-   _topSkillBasket = Sprite::create("Sprites/player/sh_player_bar_skill_lock.png");
-   _topSkillBasket->setScale(_scale);
-   _topSkillBasket->setPosition(Vec2(topMoney->getPositionX() - 120, topLv->getPositionY() - 70));
-   _topSkillBasket->setZOrder(ORDER_UI);
-    this->addChild(_topSkillBasket);
-
-    auto pauseButton = cocos2d::ui::Button::create("Sprites/icon/sh_icon_pause.png");
+    auto pauseButton = cocos2d::ui::Button::create("Sprites/News/icon/pl_icon_pause.png");
     pauseButton->setZOrder(ORDER_UI);
     pauseButton->setScale(_scale);
     pauseButton->setPressedActionEnabled(true);
-    pauseButton->setPosition(Vec2(topRank->getPositionX() + topRank->getContentSize().width + 150, topLv->getPositionY()));
+    pauseButton->setPosition(Vec2(visibleSize.width / 2 + posTopPause.x, visibleSize.height - topTime->getContentSize().height + 20));
     pauseButton->addClickEventListener([=](Ref* sender)
     {
         SOUND_MANAGER->playClickEffect();
@@ -481,9 +442,7 @@ void GameScene::InitUI()
             return;
         }
 
-        auto layer = PauseLayer::create();
-        layer->SetCallback([=]() {
-        });
+        auto layer = LoseLayer::create(100);
 
         layer->setLocalZOrder(ORDER_POPUP);
         layer->setName("PauseLayer");
@@ -492,53 +451,20 @@ void GameScene::InitUI()
         ANIMATION_MANAGER->transitionSlideIn(AnimationManager::Direction::LEFT, 0.25f, utils::findChild(layer, "background"));
 
     });
+
     this->addChild(pauseButton);
 
-    auto guideButton = cocos2d::ui::Button::create("Sprites/icon/sh_icon_paytable.png");
-    guideButton->setZOrder(ORDER_UI);
-    guideButton->setScale(_scale);
-    guideButton->setPressedActionEnabled(true);
-    guideButton->setPosition(Vec2(topRank->getPositionX() + topRank->getContentSize().width + 150, topLv->getPositionY() - 72));
-    guideButton->addClickEventListener([=](Ref* sender)
-    {
-        SOUND_MANAGER->playClickEffect();
-        if (_isGameOver)
-        {
-            return;
-        }
-
-        Director::getInstance()->getScheduler()->setTimeScale(0.0f);
-
-        auto layer = GuideLayer::create();
-        layer->SetCallback([=]() {
-            Director::getInstance()->getScheduler()->setTimeScale(1.0f);
-        });
-        layer->setName("GuideLayer");
-        layer->setLocalZOrder(ORDER_POPUP);
-        this->addChild(layer);
-
-        ANIMATION_MANAGER->transitionSlideIn(AnimationManager::Direction::LEFT, 0.25f, utils::findChild(layer, "background"));
-
-    });
-    this->addChild(guideButton);
+    LoadStar();
 }
 
 void GameScene::LoadStar()
 {
-    if (_star == 3)
+    for (auto i = 0; i < _star; i++)
     {
-        auto getTextureCache = Director::getInstance()->getTextureCache();
-        _levelStar->setTexture(getTextureCache->addImage("Sprites/player/sh_player_star_3.png"));
-    }
-    else if (_star == 2)
-    {
-        auto getTextureCache = Director::getInstance()->getTextureCache();
-        _levelStar->setTexture(getTextureCache->addImage("Sprites/player/sh_player_star_2.png"));
-    }
-    else
-    {
-        auto getTextureCache = Director::getInstance()->getTextureCache();
-        _levelStar->setTexture(getTextureCache->addImage("Sprites/player/sh_player_star_1.png"));
+        auto star = Sprite::create("Sprites/News/ui/pl_ui_star_on.png");
+
+        star->setPosition(Vec2(_levelStar->getContentSize().width / 2 + i * 65 - 15, _levelStar->getContentSize().height / 2 + 5));
+        _levelStar->addChild(star);
     }
 }
 
@@ -847,19 +773,7 @@ void GameScene::UpdateScore(Entity* entity)
 
 void GameScene::GameOver()
 {
-    auto lives = DataManager::getInstance()->GetLive();
-    lives--;
-    DataManager::getInstance()->SetLive(lives);
-    SubLive();
-
-    if (lives > 0)
-    {
-        return;
-    }
-
     _isGameOver = true;
-
-    unschedule("spawn_cards");
     StopEntities();
 
     this->runAction(Sequence::create(DelayTime::create(0.5f), CallFunc::create([=]() {
@@ -882,7 +796,6 @@ void GameScene::Victory()
 {
     _isGameOver = true;
 
-    unschedule("spawn_cards");
     StopEntities();
 
     SoundManager::GetInstance()->stopAllBackgroundMusics();
@@ -902,10 +815,6 @@ void GameScene::Victory()
         winLayer->setZOrder(ORDER_POPUP);
         this->addChild(winLayer);
     }), nullptr));
-}
-
-void GameScene::Warning(vector<int> rows)
-{
 }
 
 void GameScene::WaitingGameDone()
@@ -1005,15 +914,6 @@ void GameScene::AddLeaderBoard()
     auto totalLeaderBoard = dataManager->GetTotalLeaderBoard();
 
     dataManager->SaveLeaderBoard(_score, 0);
-}
-
-void GameScene::SubLive()
-{
-    if (_lives.size() <= 0) return;
-
-    auto live = _lives.back();
-    live->removeFromParent();
-    _lives.pop_back();
 }
 
 bool GameScene::onContactBegin(cocos2d::PhysicsContact& contact)

@@ -101,7 +101,6 @@ void SoundManager::pauseAllBackgroundMusics()
 
 void SoundManager::pauseAllSoundEffects()
 {
-	AudioEngine::pauseAll();
 }
 
 void SoundManager::resumeAllBackgroundMusics()
@@ -137,7 +136,6 @@ void SoundManager::stopAllBackgroundMusics()
 
 void SoundManager::stopAllSoundEffects()
 {
-	AudioEngine::stopAll();
 }
 
 void SoundManager::preloadSoundEffectAndMusic()

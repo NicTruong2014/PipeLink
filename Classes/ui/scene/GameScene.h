@@ -33,13 +33,11 @@ private:
     void UpdateScore(Entity* entity);
     void GameOver();
     void Victory();
-    void Warning(vector<int> rows);
     void WaitingGameDone();
     void CheckEndGame(Entity* pipe);
     void StopEntities();
     void AddLeaderBoard();
-    void SubLive();
-
+    
     void update(float dt);
     void updateTime(float dt);
 

@@ -18,10 +18,11 @@ bool PauseLayer::init()
 
     auto visibleSize = Director::getInstance()->getVisibleSize();
     auto origin = Director::getInstance()->getVisibleOrigin();
-    auto scale = 0.8f;
+    auto scale = 1.0f;
     HelperManager::GetInstance()->addLockLayer(this);
 
-    auto background = ui::Scale9Sprite::create("Sprites/popup/sh_popup_pause.png");
+    auto background = ui::Scale9Sprite::create("Sprites/News/popup/pl_popup_pause.png");
+
     background->setScale(scale);
     background->setName("background");
     background->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
@@ -42,8 +43,8 @@ bool PauseLayer::init()
     });
     background->addChild(closeButton);
 
-    auto resumeButton = cocos2d::ui::Button::create("Sprites/icon/sh_icon_play.png");
-    resumeButton->setPosition(Vec2(background->getContentSize().width / 2, resumeButton->getContentSize().height + 86));
+    auto resumeButton = cocos2d::ui::Button::create("Sprites/News/icon/pl_icon_play.png");
+    resumeButton->setPosition(Vec2(background->getContentSize().width / 2, resumeButton->getContentSize().height + 28));
     resumeButton->setPressedActionEnabled(true);
     resumeButton->addClickEventListener([=](Ref* sender)
     {
@@ -55,8 +56,8 @@ bool PauseLayer::init()
     });
     background->addChild(resumeButton);
 
-    auto retryButton = cocos2d::ui::Button::create("Sprites/icon/sh_icon_replay.png");
-    retryButton->setPosition(Vec2(background->getContentSize().width / 2 - retryButton->getContentSize().width - 20, resumeButton->getContentSize().height + 86));
+    auto retryButton = cocos2d::ui::Button::create("Sprites/News/icon/pl_icon_replay.png");
+    retryButton->setPosition(Vec2(background->getContentSize().width / 2 - retryButton->getContentSize().width - 20, resumeButton->getContentSize().height + 28));
     retryButton->setPressedActionEnabled(true);
     retryButton->addClickEventListener([=](Ref* sender)
     {
@@ -66,8 +67,8 @@ bool PauseLayer::init()
     });
     background->addChild(retryButton);
 
-    auto menuButton = cocos2d::ui::Button::create("Sprites/icon/sh_icon_home.png");
-    menuButton->setPosition(Vec2(background->getContentSize().width / 2 + retryButton->getContentSize().width + 20, resumeButton->getContentSize().height + 86));
+    auto menuButton = cocos2d::ui::Button::create("Sprites/News/icon/pl_icon_home.png");
+    menuButton->setPosition(Vec2(background->getContentSize().width / 2 + retryButton->getContentSize().width + 20, resumeButton->getContentSize().height + 28));
     menuButton->setPressedActionEnabled(true);
     menuButton->addClickEventListener([=](Ref* sender)
     {
@@ -80,8 +81,13 @@ bool PauseLayer::init()
     auto isSoundOn = UserDefault::getInstance()->getBoolForKey(IS_SOUND_KEY_ON, true);
     auto isMusicOn = UserDefault::getInstance()->getBoolForKey(IS_MUSIC_KEY_ON, true);
     auto soundButton = cocos2d::ui::Button::create();
-    auto textureSound = isSoundOn ? "Sprites/button/sh_button_sound_on.png" : "Sprites/button/sh_button_sound_off.png";
-    auto textureMusic = isMusicOn ? "Sprites/button/sh_button_music_on.png" : "Sprites/button/sh_button_music_off.png";
+    auto pathSoundOn = "Sprites/News/ui/pl_icon_sound_on.png";
+    auto pathSoundOff = "Sprites/News/ui/pl_button_sound_off.png";
+    auto pathMusicOn = "Sprites/News/ui/pl_button_music_on.png";
+    auto pathMusicOff = "Sprites/News/ui/pl_button_music_off.png";
+
+    auto textureSound = isSoundOn ? pathSoundOn : pathSoundOff;
+    auto textureMusic = isMusicOn ? pathMusicOn : pathMusicOff;
 
     soundButton->loadTextures(textureSound, "", textureSound);
     soundButton->setPosition(Vec2(background->getContentSize().width / 2 - retryButton->getContentSize().width + 74, resumeButton->getContentSize().height + 350));
@@ -103,7 +109,7 @@ bool PauseLayer::init()
             SOUND_MANAGER->pauseAllSoundEffects();
         }
 
-        auto textureSoundL = isSoundOnL ? "Sprites/button/sh_button_sound_on.png" : "Sprites/button/sh_button_sound_off.png";
+        auto textureSoundL = isSoundOnL ? pathSoundOn : pathSoundOff;
         soundButton->loadTextures(textureSoundL, "", textureSoundL);
     });
     background->addChild(soundButton);
@@ -129,7 +135,7 @@ bool PauseLayer::init()
             SOUND_MANAGER->pauseAllBackgroundMusics();
         }
 
-        auto textureMusicL = isSoundOnL ? "Sprites/button/sh_button_music_on.png" : "Sprites/button/sh_button_music_off.png";
+        auto textureMusicL = isSoundOnL ? pathMusicOn : pathMusicOff;
         musicButton->loadTextures(textureMusicL, "", textureMusicL);
     });
     background->addChild(musicButton);

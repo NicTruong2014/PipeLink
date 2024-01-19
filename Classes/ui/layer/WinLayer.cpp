@@ -17,19 +17,18 @@ bool WinLayer::init(int score, int star)
 
     auto visibleSize = Director::getInstance()->getVisibleSize();
     auto origin = Director::getInstance()->getVisibleOrigin();
-    auto scale = 0.8f;
+    auto scale = 1.0f;
     HelperManager::GetInstance()->addLockLayer(this);
 
-    auto background = ui::Scale9Sprite::create("Sprites/popup/sh_popup_win.png");
+    auto background = ui::Scale9Sprite::create("Sprites/News/popup/pl_popup_win.png");
     background->setScale(scale);
     background->setName("background");
     background->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
-    background->setContentSize(Size(background->getContentSize().width + 50, background->getContentSize().height + 50));
     background->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
     this->addChild(background);
 
-    auto rankButton = cocos2d::ui::Button::create("Sprites/icon/sh_icon_rank.png");
-    rankButton->setPosition(Vec2(background->getContentSize().width / 2 + rankButton->getContentSize().width + 20, rankButton->getContentSize().height + 86));
+    auto rankButton = cocos2d::ui::Button::create("Sprites/News/icon/pl_icon_rank.png");
+    rankButton->setPosition(Vec2(background->getContentSize().width / 2 + rankButton->getContentSize().width + 20, rankButton->getContentSize().height + 28));
     rankButton->setPressedActionEnabled(true);
     rankButton->addClickEventListener([=](Ref* sender)
     {
@@ -40,8 +39,8 @@ bool WinLayer::init(int score, int star)
     });
     background->addChild(rankButton);
 
-    auto nextButton = cocos2d::ui::Button::create("Sprites/icon/sh_icon_next.png");
-    nextButton->setPosition(Vec2(background->getContentSize().width / 2, rankButton->getContentSize().height + 86));
+    auto nextButton = cocos2d::ui::Button::create("Sprites/News/icon/pl_icon_next.png");
+    nextButton->setPosition(Vec2(background->getContentSize().width / 2, rankButton->getContentSize().height + 28));
     nextButton->setPressedActionEnabled(true);
     nextButton->addClickEventListener([=](Ref* sender)
     {
@@ -52,8 +51,8 @@ bool WinLayer::init(int score, int star)
     });
     background->addChild(nextButton);
 
-    auto menuButton = cocos2d::ui::Button::create("Sprites/icon/sh_icon_home.png");
-    menuButton->setPosition(Vec2(background->getContentSize().width / 2 - rankButton->getContentSize().width - 20, rankButton->getContentSize().height + 86));
+    auto menuButton = cocos2d::ui::Button::create("Sprites/News/icon/pl_icon_home.png");
+    menuButton->setPosition(Vec2(background->getContentSize().width / 2 - rankButton->getContentSize().width - 20, rankButton->getContentSize().height + 28));
     menuButton->setPressedActionEnabled(true);
     menuButton->addClickEventListener([=](Ref* sender)
     {
@@ -63,25 +62,27 @@ bool WinLayer::init(int score, int star)
     });
     background->addChild(menuButton);
 
-    auto rectLv = cocos2d::Sprite::create("Sprites/player/sh_player_bar_level.png");
-    rectLv->setPosition(Vec2(background->getContentSize().width / 2, background->getContentSize().height / 2 + 150));
+    auto rectLv = cocos2d::Sprite::create("Sprites/News/ui/pl_ui_level.png");
+    rectLv->setPosition(Vec2(background->getContentSize().width / 2, background->getContentSize().height / 2 + 100));
     background->addChild(rectLv);
  
     auto level = DataManager::getInstance()->GetLevel();
-    auto labelLv = cocos2d::Label::createWithTTF("Leader Board", "fonts/SVNMergeBold.ttf", 30);
+    auto labelLv = cocos2d::Label::createWithTTF("Leader Board", "fonts/SVNMergeBold.ttf", 40);
     labelLv->setString(std::to_string(level));
-    labelLv->setPosition(Vec2(background->getContentSize().width / 2 - 40, background->getContentSize().height / 2 + 150));
+    labelLv->setPosition(Vec2(background->getContentSize().width / 2 + 50, background->getContentSize().height / 2 + 105));
     background->addChild(labelLv);
 
-    _spriteStar3 = cocos2d::Sprite::create("Sprites/player/sh_player_star_3.png");
-    _spriteStar3->setPosition(Vec2(background->getContentSize().width / 2 + 63, background->getContentSize().height / 2 + 150));
+    _spriteStar3 = cocos2d::Sprite::create("Sprites/News/ui/pl_ui_star.png");
+    _spriteStar3->setPosition(Vec2(background->getContentSize().width / 2, background->getContentSize().height / 2 - 35));
     background->addChild(_spriteStar3);
 
-    auto txtScore = cocos2d::Label::createWithTTF("111", "fonts/SVNMergeBold.ttf", 45);
-    txtScore->setAnchorPoint({ 0.5,0.5 });
-    txtScore->setPosition(Vec2(background->getContentSize().width / 2, background->getContentSize().height / 2 - 70));
-    txtScore->setString(std::to_string(score));
-    background->addChild(txtScore);
+    for (auto i = 0; i < 3; i++)
+    {
+        auto star = Sprite::create("Sprites/News/ui/pl_ui_star_off.png");
+
+        star->setPosition(Vec2(_spriteStar3->getContentSize().width / 2 + i * 65 - 15, _spriteStar3->getContentSize().height / 2 + 5));
+        _spriteStar3->addChild(star);
+    }
 
     LoadStar(star);
 
@@ -90,19 +91,11 @@ bool WinLayer::init(int score, int star)
 
 void WinLayer::LoadStar(int star)
 {
-    if (star == 3)
+    for (auto i = 0; i < star; i++)
     {
-        auto getTextureCache = Director::getInstance()->getTextureCache();
-        _spriteStar3->setTexture(getTextureCache->addImage("Sprites/fruit/sh_player_star_3.png"));
-    }
-    else if (star == 2)
-    {
-        auto getTextureCache = Director::getInstance()->getTextureCache();
-        _spriteStar3->setTexture(getTextureCache->addImage("Sprites/fruit/sh_player_star_2.png"));
-    }
-    else
-    {
-        auto getTextureCache = Director::getInstance()->getTextureCache();
-        _spriteStar3->setTexture(getTextureCache->addImage("Sprites/fruit/sh_player_star_1.png"));
+        auto star = Sprite::create("Sprites/News/ui/pl_ui_star_on.png");
+
+        star->setPosition(Vec2(_spriteStar3->getContentSize().width / 2 + i * 65 - 15, _spriteStar3->getContentSize().height / 2 + 5));
+        _spriteStar3->addChild(star);
     }
 }

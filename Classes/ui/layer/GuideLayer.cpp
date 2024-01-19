@@ -14,7 +14,7 @@ bool GuideLayer::init()
     auto getTextureCache = Director::getInstance()->getTextureCache();
     auto visibleSize = Director::getInstance()->getVisibleSize();
     auto origin = Director::getInstance()->getVisibleOrigin();
-    auto scale = 0.8f;
+    auto scale = 1.0f;
 
     HelperManager::GetInstance()->addLockLayer(this);
 

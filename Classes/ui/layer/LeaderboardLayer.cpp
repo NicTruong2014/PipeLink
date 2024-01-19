@@ -60,7 +60,7 @@ bool LeaderboardLayer::init()
 		return false;
 	}
 
-	auto scale = 0.8f;
+	auto scale = 1.0f;
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 

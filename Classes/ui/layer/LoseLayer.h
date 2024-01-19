@@ -31,5 +31,7 @@ public:
     }
 
 private:
+    void LoadStar(int star);
     std::function<void()> _callBack;
+    cocos2d::Sprite* _spriteStar3;
 };
