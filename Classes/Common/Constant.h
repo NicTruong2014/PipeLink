@@ -5,6 +5,15 @@ using namespace std;
 
 #define SizePipe Vec2(120,120)
 
+enum class TypeSelectLevel
+{
+	Star0,
+	Star1,
+	Star2,
+	Star3,
+	Block,
+};
+
 enum class TypePipe
 {
 	Pipe1 = 1,

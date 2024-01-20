@@ -12,18 +12,18 @@ public:
 
     int GetTotalLeaderBoard() { return _totalLeaderBoard; }
     void SetTotalLeaderBoard(int value) { _totalLeaderBoard = value; }
-    void SaveLeaderBoard(int score, int time);
-    void SetLevel(int level);
-    int GetLevel();
+    void SaveLeaderBoard(int score);
+
+    int GetCurrentLevel();
+    void SetCurrentLevel(int level);
 
     void SetScore(int value);
     int GetScore();
 
-    void SetMoney(int value);
-    float GetMoney();
+    void UnlockLevel(int level);
 
-    void SetLive(int value);
-    int GetLive();
+    void SetDataLevel(TypeSelectLevel type, int level);
+    TypeSelectLevel GetDataLevel(int level);
    
 private:
     DataManager();

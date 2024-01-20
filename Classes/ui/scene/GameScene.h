@@ -30,7 +30,7 @@ private:
     void CheckNeibourDrag(Entity* pipe);
     void CheckNeibourDrop(Entity* pipe);
     void CheckDropPipe();
-    void UpdateScore(Entity* entity);
+    void UpdateScore();
     void GameOver();
     void Victory();
     void WaitingGameDone();

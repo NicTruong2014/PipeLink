@@ -4,6 +4,7 @@
 #include "TutorialLayer.h"
 #include "LeaderboardLayer.h"
 #include "DataManager.h"
+#include "SelectLevelLayer.h"
 #include "SettingsLayer.h"
 
 cocos2d::Scene* MainMenuScene::createScene()
@@ -41,38 +42,28 @@ void MainMenuScene::InitUI()
     auto visibleSize = Director::getInstance()->getVisibleSize();
     auto origin = Director::getInstance()->getVisibleOrigin();
 
-    auto parentNode = Node::create();
-    parentNode->setContentSize(visibleSize);
-    parentNode->setAnchorPoint(Vec2(0.5f, 0.5f));
-    this->addChild(parentNode);
+    auto background = Sprite::create("Sprites/News/pl_background_home.png");
+    background->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
+    this->addChild(background);
 
-    auto background = Sprite::create("Sprites/background_home_2.png");
-    background->setPosition(Vec2(visibleSize.width / 2 + origin.x, 350 + origin.y));
-    parentNode->addChild(background);
+    auto logo = Sprite::create("Sprites/News/logo/logo_game.png");
+    logo->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y + 100));
+    this->addChild(logo);
 
-    auto logo = Sprite::create("Sprites/logo/logo_game.png");
-    logo->setScale(0.78f);
-    logo->setPosition(Vec2(visibleSize.width / 2 + origin.x, 500 + origin.y));
-    parentNode->addChild(logo);
-
-    auto centerOfParent = Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y);
-    parentNode->setPosition(centerOfParent);
-    parentNode->setScale(0.7f);
-
-    auto playButton = cocos2d::ui::Button::create("Sprites/button/sh_button_play.png");
-    //playButton->setScale(1.2f);
-    playButton->setPosition(Vec2(background->getContentSize().width / 2, 200));
+    auto playButton = cocos2d::ui::Button::create("Sprites/News/button_home/pl_button_home_play.png");
+    playButton->setPosition(Vec2(background->getContentSize().width / 2, background->getContentSize().height / 2 - 300));
     playButton->setPressedActionEnabled(true);
     playButton->addClickEventListener([=](Ref* sender)
     {
         SOUND_MANAGER->playClickEffect();
-        Director::getInstance()->replaceScene(GameScene::createScene());
+        auto layer = SelectLevelLayer::create();
+        this->addChild(layer);
     });
     background->addChild(playButton);
 
-    auto tutorialButton = cocos2d::ui::Button::create("Sprites/icon/sh_icon_tutorial.png");
+    auto tutorialButton = cocos2d::ui::Button::create("Sprites/News/button_home/pl_button_home_tutorial.png");
     tutorialButton->setScale(1.2f);
-    tutorialButton->setPosition(Vec2(playButton->getPositionX() - 340, playButton->getPositionY()));
+    tutorialButton->setPosition(Vec2(playButton->getPositionX() + 240, playButton->getPositionY()));
     tutorialButton->setPressedActionEnabled(true);
     tutorialButton->addClickEventListener([=](Ref* sender)
     {
@@ -82,7 +73,7 @@ void MainMenuScene::InitUI()
     });
     background->addChild(tutorialButton);
 
-    auto rankButton = cocos2d::ui::Button::create("Sprites/icon/sh_icon_rank.png");
+    auto rankButton = cocos2d::ui::Button::create("Sprites/News/button_home/pl_button_home_rank.png");
     rankButton->setScale(1.2f);
     rankButton->setPosition(Vec2(playButton->getPositionX() - 240, playButton->getPositionY()));
     rankButton->setPressedActionEnabled(true);
@@ -94,9 +85,9 @@ void MainMenuScene::InitUI()
     });
     background->addChild(rankButton);
 
-    auto settingButton = cocos2d::ui::Button::create("Sprites/icon/sh_icon_setting.png");
+    auto settingButton = cocos2d::ui::Button::create("Sprites/News/button_home/pl_button_home_setting.png");
     settingButton->setScale(1.2f);
-    settingButton->setPosition(Vec2(playButton->getPositionX() + 340, playButton->getPositionY()));
+    settingButton->setPosition(Vec2(visibleSize.width - 150, visibleSize.height - 150));
     settingButton->setPressedActionEnabled(true);
     settingButton->addClickEventListener([=](Ref* sender)
     {

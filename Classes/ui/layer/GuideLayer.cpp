@@ -16,31 +16,19 @@ bool GuideLayer::init()
     auto origin = Director::getInstance()->getVisibleOrigin();
     auto scale = 1.0f;
 
-    HelperManager::GetInstance()->addLockLayer(this);
-
     _sprites.push_back(getTextureCache->addImage("Sprites/popup/infor/sh_popup_infor_fruit.png"));
     _sprites.push_back(getTextureCache->addImage("Sprites/popup/infor/sh_popup_infor_mushroom.png"));
     _sprites.push_back(getTextureCache->addImage("Sprites/popup/infor/sh_popup_infor_apples.png"));
 
     _background = Sprite::create("Sprites/popup/infor/sh_popup_infor_fruit.png");
+    HelperManager::GetInstance()->addLockLayer(this, _background);
+
     _background->setScale(scale);
     _background->setName("background");
     _background->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
     _background->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
 
     this->addChild(_background);
-
-    auto closeButton = cocos2d::ui::Button::create("Sprites/icon/sh_icon_cancel.png");
-    closeButton->setPosition(Vec2(_background->getContentSize().width - closeButton->getContentSize().width / 4,
-        _background->getContentSize().height - closeButton->getContentSize().height - 10));
-    closeButton->setPressedActionEnabled(true);
-    closeButton->addClickEventListener([=](Ref* sender)
-    {
-        _callBack();
-        SOUND_MANAGER->playClickEffect();
-        this->removeFromParent();
-    });
-    _background->addChild(closeButton);
 
     auto backButton = cocos2d::ui::Button::create("Sprites/icon/sh_icon_back.png");
     backButton->setPosition(Vec2(0 - 30, _background->getContentSize().height / 2));

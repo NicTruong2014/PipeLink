@@ -18,9 +18,10 @@ bool LoseLayer::init(int score)
     auto visibleSize = Director::getInstance()->getVisibleSize();
     auto origin = Director::getInstance()->getVisibleOrigin();
     auto scale = 1.0f;
-    HelperManager::GetInstance()->addLockLayer(this);
 
     auto background = ui::Scale9Sprite::create("Sprites/News/popup/pl_popup_lose.png");
+    HelperManager::GetInstance()->addLockLayer(this, background);
+
     background->setScale(scale);
     background->setName("background");
     background->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
@@ -44,7 +45,6 @@ bool LoseLayer::init(int score)
     nextButton->setPressedActionEnabled(true);
     nextButton->addClickEventListener([=](Ref* sender)
         {
-            _callBack();
             SOUND_MANAGER->playClickEffect();
             this->removeFromParent();
             Director::getInstance()->replaceScene(GameScene::createScene());
@@ -66,7 +66,7 @@ bool LoseLayer::init(int score)
     rectLv->setPosition(Vec2(background->getContentSize().width / 2, background->getContentSize().height / 2 + 100));
     background->addChild(rectLv);
 
-    auto level = DataManager::getInstance()->GetLevel();
+    auto level = DataManager::getInstance()->GetCurrentLevel();
     auto labelLv = cocos2d::Label::createWithTTF("Leader Board", "fonts/SVNMergeBold.ttf", 40);
     labelLv->setString(std::to_string(level));
     labelLv->setPosition(Vec2(background->getContentSize().width / 2 + 50, background->getContentSize().height / 2 + 105));

@@ -43,7 +43,7 @@ public:
 
     float getSpineDuration(spine::SkeletonAnimation *spine,std::string animationName,float defaultDuration = 0.0);
     
-    void addLockLayer(cocos2d::Node* node);
+    void addLockLayer(cocos2d::Node* node, cocos2d::Node* popup);
 
     std::string getCurrentDate();
 

@@ -101,11 +101,12 @@ bool AppDelegate::applicationDidFinishLaunching() {
     if (firstLaunch)
     {
         UserDefault::getInstance()->setIntegerForKey("first_launch", false);
+        DataManager::getInstance()->UnlockLevel(1);
     }
 
     //remove(UserDefault::getInstance()->getXMLFilePath().c_str());
 
-    auto scene = GameScene::createScene();
+    auto scene = MainMenuScene::createScene();
     director->runWithScene(scene);
 
     return true;

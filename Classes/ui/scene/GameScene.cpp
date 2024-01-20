@@ -11,15 +11,14 @@
 #include "LoseLayer.h"
 #include "GuideLayer.h"
 #include "TutorialLayer.h"
+#include "HelperManager.h"
 
 USING_NS_CC;
 
 #define ORDER_POPUP 3
-#define LOW_SPEED 0.5f
-#define DEFAULT_SPEED 1
 #define ORDER_POPUP 999
 #define ORDER_UI 3
-#define DEBUG_PHYSIC 0
+#define DEBUG_ 0
 
 Scene* GameScene::createScene()
 {
@@ -88,9 +87,9 @@ void GameScene::InitListener()
         auto previousTouchPos = touch->getPreviousLocation();
         auto touchDelta = touchPos - previousTouchPos;
         auto convertBox = _board->convertToNodeSpace(touchPos);
-
+#if DEBUG_
         label->setString(StringUtils::format("%d %d", (int)convertBox.x, (int)convertBox.y));
-
+#endif
         if (_pipe == NULL)
         {
             return true;
@@ -132,7 +131,10 @@ void GameScene::InitListener()
                     _matrix[locationMatrix.x][locationMatrix.y] = NULL;
                     _pipe->SetVisied(false);
                     _pipe->SetNeibour(false);
+
                     CheckNeibourDrag(_pipe);
+                    UpdateScore();
+
                     _pipe->SetLocationMatrix(Vec2(-1, -1));
 
                     break;
@@ -241,6 +243,7 @@ void GameScene::InitBackGround()
 
             _matrixPipe[i].push_back(Rect(x, y, SizePipe.x, SizePipe.y));
 
+#if DEBUG_
             float width = 120;
             float height = 120;
 
@@ -257,6 +260,7 @@ void GameScene::InitBackGround()
             auto label2 = cocos2d::Label::createWithSystemFont(labelText2, "Arial", 20);
             label2->setPosition(cocos2d::Vec2(x + width / 2, y + height / 3)); // Đặt chữ giữa hình chữ nhật
             _board->addChild(label2);
+#endif
         }
     }
 
@@ -305,7 +309,7 @@ void GameScene::InitBackGround()
         //Left
         auto plumping = Plumping::create(TypePipe::PlumpingLeft);
         auto row = plumpingPlaces[0];
-        auto delta = Vec2(SizePipe.x / 2 + 20, SizePipe.y / 2);
+        auto delta = Vec2(SizePipe.x / 2 + 22, SizePipe.y / 2);
 
         _board->addChild(plumping);
         plumping->setPosition(_matrixPipe[0][row].origin + delta);
@@ -319,7 +323,7 @@ void GameScene::InitBackGround()
         //right
         auto plumping = Plumping::create(TypePipe::PlumpingRight);
         auto row = plumpingPlaces[1];
-        auto delta = Vec2(SizePipe.x / 2 - 20, SizePipe.y / 2);
+        auto delta = Vec2(SizePipe.x / 2 - 22, SizePipe.y / 2);
 
         _board->addChild(plumping);
         plumping->setPosition(_matrixPipe[6][row].origin + delta);
@@ -333,7 +337,7 @@ void GameScene::InitBackGround()
         //Top
         auto plumping = Plumping::create(TypePipe::PlumpingTop);
         auto col = plumpingPlaces[2];
-        auto delta = Vec2(SizePipe.x / 2, SizePipe.y / 2 - 20);
+        auto delta = Vec2(SizePipe.x / 2, SizePipe.y / 2 - 22);
 
         _board->addChild(plumping);
         plumping->setPosition(_matrixPipe[col][6].origin + delta);
@@ -347,7 +351,7 @@ void GameScene::InitBackGround()
         //Bottom
         auto plumping = Plumping::create(TypePipe::PlumpingBottom);
         auto col = plumpingPlaces[3];
-        auto delta = Vec2(SizePipe.x / 2, SizePipe.y / 2 + 20);
+        auto delta = Vec2(SizePipe.x / 2, SizePipe.y / 2 + 22);
 
         _board->addChild(plumping);
         plumping->setPosition(_matrixPipe[col][0].origin + delta);
@@ -362,7 +366,7 @@ void GameScene::InitUI()
 {
     auto visibleSize = Director::getInstance()->getVisibleSize();
     auto origin = Director::getInstance()->getVisibleOrigin();
-    auto level = DataManager::getInstance()->GetLevel();
+    auto level = DataManager::getInstance()->GetCurrentLevel();
 
     auto posTopTime = Vec2(-158, 0);
     auto posTopLevel = Vec2(-424, 0);
@@ -442,7 +446,7 @@ void GameScene::InitUI()
             return;
         }
 
-        auto layer = LoseLayer::create(100);
+        auto layer = PauseLayer::create();
 
         layer->setLocalZOrder(ORDER_POPUP);
         layer->setName("PauseLayer");
@@ -459,7 +463,10 @@ void GameScene::InitUI()
 
 void GameScene::LoadStar()
 {
-    for (auto i = 0; i < _star; i++)
+    auto level = DataManager::getInstance()->GetCurrentLevel();
+    auto levelData = DataManager::getInstance()->GetDataLevel(level);
+
+    for (auto i = 0; i < (int)levelData; i++)
     {
         auto star = Sprite::create("Sprites/News/ui/pl_ui_star_on.png");
 
@@ -750,7 +757,9 @@ void GameScene::CheckDropPipe()
                 pipe->SetLocationMatrix(Vec2(i, j));
                 _pipe->setPosition(_matrixPipe[i][j].origin + Vec2(SizePipe.x / 2, SizePipe.y / 2));
                 _matrix[i][j] = _pipe;
+
                 CheckNeibourDrop(_pipe);
+                UpdateScore();
                 CheckEndGame(_pipe);
 
                 _pipe = NULL;
@@ -761,14 +770,28 @@ void GameScene::CheckDropPipe()
 
     ((Pipe*)_pipe)->DropPipe();
     CheckNeibourDrag(_pipe);
+    UpdateScore();
 
     _pipe = NULL;
 }
 
-void GameScene::UpdateScore(Entity* entity)
+void GameScene::UpdateScore()
 {
-   /* _score = entity->UpdateScore(entity->GetTypePipe(), _score);
-    _txtScore->setString(std::to_string(_score));*/
+    auto score = 0;
+    for (auto i = 0; i < 7; i++)
+    {
+        for (auto j = 0; j < 7; j++)
+        {
+            auto pipe = _matrix[i][j];
+            if (pipe != NULL && pipe->GetNeibour() && Utils::IsPipe(pipe->GetTypePipe()))
+            {
+                score += 1000;
+            }
+        }
+    }
+
+    _score = score;
+    _txtScore->setString(std::to_string(score));
 }
 
 void GameScene::GameOver()
@@ -807,7 +830,7 @@ void GameScene::Victory()
         Director::getInstance()->getScheduler()->setTimeScale(0.0f);
 
         SoundManager::GetInstance()->playWinEffect();
-        auto winLayer = WinLayer::create(_score, _star);
+        auto winLayer = WinLayer::create(_score, 3);
         winLayer->SetCallback([=]() 
         {
             Director::getInstance()->getScheduler()->setTimeScale(1.0f);
@@ -913,7 +936,7 @@ void GameScene::AddLeaderBoard()
     auto dataManager = DataManager::getInstance();
     auto totalLeaderBoard = dataManager->GetTotalLeaderBoard();
 
-    dataManager->SaveLeaderBoard(_score, 0);
+    dataManager->SaveLeaderBoard(_score);
 }
 
 bool GameScene::onContactBegin(cocos2d::PhysicsContact& contact)

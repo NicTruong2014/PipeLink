@@ -17,6 +17,5 @@ bool Entity::init()
 
 int Entity::UpdateScore(TypePipe cardType, int score)
 {
-
 	return score;
 }

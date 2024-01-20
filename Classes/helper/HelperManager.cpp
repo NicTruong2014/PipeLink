@@ -171,21 +171,31 @@ float HelperManager::getSpineDuration(spine::SkeletonAnimation *spine, std::stri
 
 }
 
-void HelperManager::addLockLayer(cocos2d::Node* node)
+void HelperManager::addLockLayer(cocos2d::Node* node, cocos2d::Node* popup)
 {
-    Size visibleSize = Director::getInstance()->getVisibleSize();
+	Size visibleSize = Director::getInstance()->getVisibleSize();
 
-    auto layer = cocos2d::LayerColor::create(cocos2d::Color4B(255, 255, 255, 255*0.5f), visibleSize.width, visibleSize.height);
-    node->addChild(layer);
+	auto layer = cocos2d::LayerColor::create(cocos2d::Color4B(255, 255, 255, 255 * 0.5f), visibleSize.width, visibleSize.height);
+	node->addChild(layer);
 
-    auto lockButton = cocos2d::ui::Button::create();
-    lockButton->ignoreContentAdaptWithSize(false);
-    lockButton->setContentSize(visibleSize*2.0f);
-    lockButton->setPressedActionEnabled(true);
-    lockButton->setPosition(layer->getContentSize()*0.5f);
-    lockButton->addClickEventListener([=](Ref*) { });
-    
-    layer->addChild(lockButton);
+	auto lockButton = cocos2d::ui::Button::create();
+	lockButton->ignoreContentAdaptWithSize(false);
+	lockButton->setContentSize(visibleSize * 2.0f);
+	lockButton->setPressedActionEnabled(true);
+	lockButton->setPosition(layer->getContentSize() * 0.5f);
+	lockButton->addTouchEventListener([=](Ref*, cocos2d::ui::Widget::TouchEventType eventType) 
+		{
+			if (eventType == cocos2d::ui::Widget::TouchEventType::ENDED)
+			{
+				Point touchPos = lockButton->getTouchEndPosition();
+				if (!popup->getBoundingBox().containsPoint(touchPos))
+				{
+					node->removeFromParent();
+				}
+			}
+		});
+
+	layer->addChild(lockButton);
 }
 
 std::string HelperManager::getCurrentDate()

@@ -12,35 +12,23 @@ DataManager::DataManager()
 {
 }
 
-void DataManager::SaveLeaderBoard(int score, int time)
+void DataManager::SaveLeaderBoard(int score)
 {
 	auto index = MAX_LEADERBOARD_ITEM - 1;
 	const std::string keyScore = cocos2d::StringUtils::format("rank_%d_score", index);
 	cocos2d::UserDefault::getInstance()->setIntegerForKey(keyScore.c_str(), score);
 }
 
-void DataManager::SetLevel(int level)
+int DataManager::GetCurrentLevel()
 {
-	cocos2d::UserDefault::getInstance()->setIntegerForKey("Level", level);
+	const std::string keyScore = cocos2d::StringUtils::format("current_level");
+	return cocos2d::UserDefault::getInstance()->getIntegerForKey(keyScore.c_str());
 }
 
-int DataManager::GetLevel()
+void DataManager::SetCurrentLevel(int level)
 {
-	auto level = cocos2d::UserDefault::getInstance()->getIntegerForKey("Level");
-	++level;
-	return level;
-}
-
-void DataManager::SetLive(int value)
-{
-	const std::string key = cocos2d::StringUtils::format("live");
-	cocos2d::UserDefault::getInstance()->setIntegerForKey(key.c_str(), value);
-}
-
-int DataManager::GetLive()
-{
-	const std::string key = cocos2d::StringUtils::format("live");
-	return cocos2d::UserDefault::getInstance()->getIntegerForKey(key.c_str());
+	const std::string keyScore = cocos2d::StringUtils::format("current_level");
+	cocos2d::UserDefault::getInstance()->setIntegerForKey(keyScore.c_str(), level);
 }
 
 void DataManager::SetScore(int value)
@@ -55,14 +43,19 @@ int DataManager::GetScore()
 	return cocos2d::UserDefault::getInstance()->getIntegerForKey(keyScore.c_str());
 }
 
-void DataManager::SetMoney(int value)
+void DataManager::UnlockLevel(int level)
 {
-	const std::string key = cocos2d::StringUtils::format("money");
-	cocos2d::UserDefault::getInstance()->setIntegerForKey(key.c_str(), value);
+	SetDataLevel(TypeSelectLevel::Star0, level);
 }
 
-float DataManager::GetMoney()
+void DataManager::SetDataLevel(TypeSelectLevel type, int level)
 {
-	const std::string key = cocos2d::StringUtils::format("money");
-	return cocos2d::UserDefault::getInstance()->getFloatForKey(key.c_str());
+	const std::string key = cocos2d::StringUtils::format("type_select_level_%d", level);
+	cocos2d::UserDefault::getInstance()->setIntegerForKey(key.c_str(), (int)type);
+}
+
+TypeSelectLevel DataManager::GetDataLevel(int level)
+{
+	const std::string key = cocos2d::StringUtils::format("type_select_level_%d", level);
+	return (TypeSelectLevel)cocos2d::UserDefault::getInstance()->getIntegerForKey(key.c_str(), (int)TypeSelectLevel::Block);
 }

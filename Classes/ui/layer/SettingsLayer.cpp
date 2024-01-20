@@ -44,23 +44,13 @@ bool SettingsLayer::init()
     this->addChild(backLayer);
 
     auto background = ui::Scale9Sprite::create("Sprites/News/popup/pl_popup_setting.png");
+    HelperManager::GetInstance()->addLockLayer(this, background);
+
     background->setScale(scale);
     background->setName("background");
     background->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
     background->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
     this->addChild(background);
-
-    auto closeButton = cocos2d::ui::Button::create("Sprites/icon/sh_icon_cancel.png");
-    closeButton->setPosition(Vec2(background->getContentSize().width - closeButton->getContentSize().width / 4 + 5,
-        background->getContentSize().height - closeButton->getContentSize().height - 10));
-    closeButton->setPressedActionEnabled(true);
-    closeButton->addClickEventListener([=](Ref* sender)
-    {
-        Director::getInstance()->getScheduler()->setTimeScale(1.0f);
-        SOUND_MANAGER->playClickEffect();
-        this->removeFromParent();
-    });
-    background->addChild(closeButton);
 
     auto isSoundOn = UserDefault::getInstance()->getBoolForKey(IS_SOUND_KEY_ON, true);
     auto isMusicOn = UserDefault::getInstance()->getBoolForKey(IS_MUSIC_KEY_ON, true);
