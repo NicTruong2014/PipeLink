@@ -125,6 +125,8 @@ void GameScene::InitListener()
                 _pipe = pipe;
                 _pipe->SetNeibour(false);
 
+                UpdateLabelPipe(_pipe, -1);
+
                 auto locationMatrix = pipe->GetLocationMatrix();
                 if (locationMatrix.x > 0 && locationMatrix.x < 6 && locationMatrix.y > 0 && locationMatrix.y < 6)
                 {
@@ -281,15 +283,23 @@ void GameScene::InitBackGround()
             indexCol++;
         }
 
+        auto index = i + 1;
+        auto number = cocos2d::Label::createWithTTF("1", "fonts/SVNMergeBold.ttf", 40);
+
+        number->setPosition(Vec2(_matrixPipeSpawnLocation[indexCol][indexRow].x, _matrixPipeSpawnLocation[indexCol][indexRow].y + 85));
+        number->setMaxLineWidth(4);
+        _board->addChild(number);
+        _labelPipes.insert(std::make_pair(TypePipe(index), number));
+
         if (pipeRow != 0)
         {
             for (auto j = 0; j < pipeRow;j++)
             {
-                auto index = i + 1;
                 auto pipe = Pipe::create(TypePipe(index));
                 auto x = _matrixPipeSpawnLocation[indexCol][indexRow].x;
                 auto y = _matrixPipeSpawnLocation[indexCol][indexRow].y;
 
+                pipe->SetLocationMatrix(Vec2(-1, -1));
                 pipe->SetLocationSpawn(Vec2(x, y));
                 pipe->setPosition(Vec2(x, y));
 
@@ -298,6 +308,8 @@ void GameScene::InitBackGround()
             }
         }
 
+        _amountPipes.insert(std::make_pair(TypePipe(index), pipeRow));
+        _labelPipes.at(TypePipe(index))->setString(std::to_string(pipeRow));
         indexRow++;
     }
 
@@ -769,8 +781,11 @@ void GameScene::CheckDropPipe()
     }
 
     ((Pipe*)_pipe)->DropPipe();
+    _pipe->SetLocationMatrix(Vec2(-1, -1));
+
     CheckNeibourDrag(_pipe);
     UpdateScore();
+    UpdateLabelPipe(_pipe, 1);
 
     _pipe = NULL;
 }
@@ -937,6 +952,17 @@ void GameScene::AddLeaderBoard()
     auto totalLeaderBoard = dataManager->GetTotalLeaderBoard();
 
     dataManager->SaveLeaderBoard(_score);
+}
+
+void GameScene::UpdateLabelPipe(Entity* pipe, int value)
+{
+    if (pipe->GetLocationMatrix() != Vec2(-1, -1)) return;
+
+    auto amount = _amountPipes.at(pipe->GetTypePipe());
+    amount += value;
+
+    _amountPipes.at(pipe->GetTypePipe()) = amount;
+    _labelPipes.at(pipe->GetTypePipe())->setString(std::to_string(amount));
 }
 
 bool GameScene::onContactBegin(cocos2d::PhysicsContact& contact)

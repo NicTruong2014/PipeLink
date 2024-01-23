@@ -37,6 +37,7 @@ private:
     void CheckEndGame(Entity* pipe);
     void StopEntities();
     void AddLeaderBoard();
+    void UpdateLabelPipe(Entity* pipe, int value);
     
     void update(float dt);
     void updateTime(float dt);
@@ -56,6 +57,8 @@ private:
     Label* _txtScore;
     Label* _txtLevel;
     Label* _txtTime;
+    std::map<TypePipe,Label*> _labelPipes;
+    std::map<TypePipe, int> _amountPipes;
 
     int _score;
     int _countdown = 1;
