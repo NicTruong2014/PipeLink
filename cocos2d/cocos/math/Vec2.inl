@@ -58,6 +58,12 @@ inline void Vec2::add(const Vec2& v)
     y += v.y;
 }
 
+inline void Vec2::multiply(const Vec2& v)
+{
+    x *= v.x;
+    y *= v.y;
+}
+
 inline float Vec2::distanceSquared(const Vec2& v) const
 {
     float dx = v.x - x;
@@ -134,6 +140,13 @@ inline Vec2 Vec2::operator+(const Vec2& v) const
 {
     Vec2 result(*this);
     result.add(v);
+    return result;
+}
+
+inline Vec2 Vec2::operator*(const Vec2& v) const
+{
+    Vec2 result(*this);
+    result.multiply(v);
     return result;
 }
 

@@ -1,4 +1,3 @@
-
 #/****************************************************************************
 # Copyright (c) 2013-2014 cocos2d-x.org
 # Copyright (c) 2015-2017 Chukong Technologies Inc.
@@ -24,9 +23,14 @@
 # THE SOFTWARE.
 # ****************************************************************************/
 
+
+
+
+
+
 cmake_minimum_required(VERSION 3.6)
 
-set(APP_NAME DeathLake)
+set(APP_NAME SumFinder)
 
 project(${APP_NAME})
 

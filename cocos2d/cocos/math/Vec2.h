@@ -124,6 +124,8 @@ public:
      */
     inline void add(const Vec2& v);
 
+    inline void multiply(const Vec2& v);
+
     /**
      * Adds the specified vectors and stores the result in dst.
      *
@@ -340,6 +342,8 @@ public:
      * @return The vector sum.
      */
     inline Vec2 operator+(const Vec2& v) const;
+
+    inline Vec2 operator*(const Vec2& v) const;
 
     /**
      * Adds the given vector to this vector.

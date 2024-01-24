@@ -2,18 +2,12 @@ import org.gradle.internal.os.OperatingSystem
 
 apply plugin: 'com.android.application'
 
+
 android {
-    compileSdkVersion 31
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-
-    ndkVersion "21.4.7075529"
+    compileSdkVersion PROP_COMPILE_SDK_VERSION.toInteger()
 
     defaultConfig {
-        applicationId "com.project.helloword"
+        applicationId "com.buttstudio.gemjumpcocos"
         minSdkVersion PROP_MIN_SDK_VERSION
         targetSdkVersion PROP_TARGET_SDK_VERSION
         versionCode 1
@@ -118,18 +112,16 @@ android {
 }
 
 android.applicationVariants.all { variant ->
+    // delete previous files first
+    delete "${buildDir}/intermediates/assets/${variant.dirName}"
 
-    delete "${projectDir}/assets"
-    def targetName = variant.name.capitalize()
-    def copyTaskName = "copy${targetName}ResourcesToAssets"
-    tasks.register(copyTaskName) {
+    variant.mergeAssets.doLast {
         copy {
-            from "${projectDir}/../../Resources"
-            into "${projectDir}/assets"
+            from "${buildDir}/../../../Resources"
+            into "${buildDir}/intermediates/assets/${variant.dirName}"
             exclude "**/*.gz"
         }
     }
-    tasks.getByName("pre${targetName}Build").dependsOn copyTaskName
 }
 
 dependencies {
