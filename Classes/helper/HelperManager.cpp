@@ -171,7 +171,7 @@ float HelperManager::getSpineDuration(spine::SkeletonAnimation *spine, std::stri
 
 }
 
-void HelperManager::addLockLayer(cocos2d::Node* node, cocos2d::Node* popup)
+void HelperManager::addLockLayer(cocos2d::Node* node, cocos2d::Node* popup, std::function<void()> callBack)
 {
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 
@@ -187,9 +187,16 @@ void HelperManager::addLockLayer(cocos2d::Node* node, cocos2d::Node* popup)
 		{
 			if (eventType == cocos2d::ui::Widget::TouchEventType::ENDED)
 			{
+				if (popup == NULL) return;
+
 				Point touchPos = lockButton->getTouchEndPosition();
 				if (!popup->getBoundingBox().containsPoint(touchPos))
 				{
+					if (callBack != NULL)
+					{
+						callBack();
+					}
+
 					node->removeFromParent();
 				}
 			}

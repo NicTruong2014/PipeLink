@@ -6,7 +6,7 @@
 
 USING_NS_CC;
 
-bool PauseLayer::init()
+bool PauseLayer::init(std::function<void()> callBack)
 {
     if (!Layer::init())
     {
@@ -20,9 +20,8 @@ bool PauseLayer::init()
     auto origin = Director::getInstance()->getVisibleOrigin();
     auto scale = 1.0f;
 
-
     auto background = ui::Scale9Sprite::create("Sprites/News/popup/pl_popup_pause.png");
-    HelperManager::GetInstance()->addLockLayer(this, background);
+    HelperManager::GetInstance()->addLockLayer(this, background, callBack);
 
     background->setScale(scale);
     background->setName("background");

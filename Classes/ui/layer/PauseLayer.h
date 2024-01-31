@@ -6,11 +6,11 @@ class PauseLayer : public cocos2d::Layer
 {
 public:
 
-    static PauseLayer* create()
+    static PauseLayer* create(std::function<void()> callBack)
     {
         PauseLayer* pRet = new(std::nothrow) PauseLayer();
 
-        if (pRet && pRet->init())
+        if (pRet && pRet->init(callBack))
         {
             pRet->autorelease();
             return pRet;
@@ -23,15 +23,9 @@ public:
         }
     }
 
-    virtual bool init();
-
-    void SetCallback(std::function<void()> callBack)
-    {
-        _callBack = callBack;
-    }
+    bool init(std::function<void()> callBack);
 
 private:
-    std::function<void()> _callBack;
 };
 
 

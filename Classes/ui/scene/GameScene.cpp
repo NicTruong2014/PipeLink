@@ -200,13 +200,13 @@ void GameScene::InitBackGround()
 
     _board = Sprite::create("Sprites/News/ui/pl_ui_board.png");
     _board->setScale(_scale);
-    _board->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
+    _board->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y - 50));
     _board->setLocalZOrder(1);
     this->addChild(_board);
 
     //initmatrix
     auto defaultSpawnX = _board->getContentSize().width / 2 + -5 * SizePipe.x;
-    auto defaultSpawnY = _board->getContentSize().height / 2 + -1 * SizePipe.y;
+    auto defaultSpawnY = _board->getContentSize().height / 2 - 62 + -1 * SizePipe.y;
     auto indexBlock = 1;
 
     for (auto i = 0; i < 4; i++)
@@ -215,7 +215,7 @@ void GameScene::InitBackGround()
         {
             if (i == 2)
             {
-                defaultSpawnX = _board->getContentSize().width / 2 + 2 * SizePipe.x;
+                defaultSpawnX = _board->getContentSize().width / 2 - 33 + 2 * SizePipe.x;
             }
 
             auto x = defaultSpawnX + i * SizePipe.x + i * 10;
@@ -386,10 +386,16 @@ void GameScene::InitUI()
     auto posTopRank = Vec2(508, 0);
     auto posTopPause = Vec2(758, 0);
 
+    auto bg = Sprite::create("Sprites/News/pl_background_play.png");
+    bg->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+    bg->setZOrder(0);
+    bg->setScale(1.2f);
+    this->addChild(bg);
+
     //Time
     auto topTime = Sprite::create("Sprites/News/ui/pl_ui_time.png");
     topTime->setScale(_scale);
-    topTime->setPosition(Vec2(visibleSize.width / 2 + posTopTime.x, visibleSize.height - topTime->getContentSize().height + 20));
+    topTime->setPosition(Vec2(visibleSize.width / 2 + posTopTime.x, visibleSize.height - topTime->getContentSize().height - 5));
     topTime->setZOrder(ORDER_UI);
     this->addChild(topTime);
 
@@ -405,7 +411,7 @@ void GameScene::InitUI()
     //Top
     auto topLv = Sprite::create("Sprites/News/ui/pl_ui_level.png");
     topLv->setScale(_scale);
-    topLv->setPosition(Vec2(visibleSize.width / 2 + posTopLevel.x, visibleSize.height - topTime->getContentSize().height + 20));
+    topLv->setPosition(Vec2(visibleSize.width / 2 + posTopLevel.x, visibleSize.height - topTime->getContentSize().height - 5));
     topLv->setLocalZOrder(ORDER_UI);
     this->addChild(topLv);
 
@@ -418,7 +424,7 @@ void GameScene::InitUI()
 
     _levelStar = Sprite::create("Sprites/News/ui/pl_ui_star.png");
     _levelStar->setScale(_scale);
-    _levelStar->setPosition(Vec2(visibleSize.width / 2 + posTopStar.x, visibleSize.height - topTime->getContentSize().height + 20));
+    _levelStar->setPosition(Vec2(visibleSize.width / 2 + posTopStar.x, visibleSize.height - topTime->getContentSize().height - 5));
     _levelStar->setZOrder(ORDER_UI);
     this->addChild(_levelStar);
 
@@ -433,7 +439,7 @@ void GameScene::InitUI()
     //Rank
     auto topRank = Sprite::create("Sprites/News/ui/pl_ui_score.png");
     topRank->setScale(_scale);
-    topRank->setPosition(Vec2(visibleSize.width / 2 + posTopRank.x, visibleSize.height - topTime->getContentSize().height + 20));
+    topRank->setPosition(Vec2(visibleSize.width / 2 + posTopRank.x, visibleSize.height - topTime->getContentSize().height - 5));
     topRank->setZOrder(ORDER_UI);
     this->addChild(topRank);
 
@@ -449,7 +455,7 @@ void GameScene::InitUI()
     pauseButton->setZOrder(ORDER_UI);
     pauseButton->setScale(_scale);
     pauseButton->setPressedActionEnabled(true);
-    pauseButton->setPosition(Vec2(visibleSize.width / 2 + posTopPause.x, visibleSize.height - topTime->getContentSize().height + 20));
+    pauseButton->setPosition(Vec2(visibleSize.width / 2 + posTopPause.x, visibleSize.height - topTime->getContentSize().height - 5));
     pauseButton->addClickEventListener([=](Ref* sender)
     {
         SOUND_MANAGER->playClickEffect();
@@ -458,7 +464,9 @@ void GameScene::InitUI()
             return;
         }
 
-        auto layer = PauseLayer::create();
+        auto layer = PauseLayer::create([]() {
+            Director::getInstance()->getScheduler()->setTimeScale(1.0f);
+        });
 
         layer->setLocalZOrder(ORDER_POPUP);
         layer->setName("PauseLayer");

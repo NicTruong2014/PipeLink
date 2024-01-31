@@ -20,7 +20,7 @@ bool LoseLayer::init(int score)
     auto scale = 1.0f;
 
     auto background = ui::Scale9Sprite::create("Sprites/News/popup/pl_popup_lose.png");
-    HelperManager::GetInstance()->addLockLayer(this, background);
+    HelperManager::GetInstance()->addLockLayer(this, NULL);
 
     background->setScale(scale);
     background->setName("background");

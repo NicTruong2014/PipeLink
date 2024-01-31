@@ -38,21 +38,31 @@ bool MainMenuScene::init()
 void MainMenuScene::InitUI()
 {
     SOUND_MANAGER->playMainMenuMusic(false);
-
+    Director::getInstance()->getScheduler()->setTimeScale(1.0f);
     auto visibleSize = Director::getInstance()->getVisibleSize();
     auto origin = Director::getInstance()->getVisibleOrigin();
 
     auto background = Sprite::create("Sprites/News/pl_background_home.png");
     background->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
+    background->setScale(1.2f);
     this->addChild(background);
 
     auto logo = Sprite::create("Sprites/News/logo/logo_game.png");
     logo->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y + 100));
     this->addChild(logo);
 
+    auto moveUp = MoveBy::create(1.0f, Vec2(0, 20));
+    auto moveDown = moveUp->reverse();
+    auto bounce = Sequence::create(moveUp, moveDown, nullptr);
+
+    auto easeBounce = EaseSineInOut::create(bounce);
+    auto repeatBounce = RepeatForever::create(easeBounce);
+    logo->runAction(repeatBounce);
+
     auto playButton = cocos2d::ui::Button::create("Sprites/News/button_home/pl_button_home_play.png");
     playButton->setPosition(Vec2(background->getContentSize().width / 2, background->getContentSize().height / 2 - 300));
     playButton->setPressedActionEnabled(true);
+    playButton->setScale(1.2f);
     playButton->addClickEventListener([=](Ref* sender)
     {
         SOUND_MANAGER->playClickEffect();
@@ -63,7 +73,7 @@ void MainMenuScene::InitUI()
 
     auto tutorialButton = cocos2d::ui::Button::create("Sprites/News/button_home/pl_button_home_tutorial.png");
     tutorialButton->setScale(1.2f);
-    tutorialButton->setPosition(Vec2(playButton->getPositionX() + 240, playButton->getPositionY()));
+    tutorialButton->setPosition(Vec2(playButton->getPositionX() + 280, playButton->getPositionY()));
     tutorialButton->setPressedActionEnabled(true);
     tutorialButton->addClickEventListener([=](Ref* sender)
     {
@@ -75,7 +85,7 @@ void MainMenuScene::InitUI()
 
     auto rankButton = cocos2d::ui::Button::create("Sprites/News/button_home/pl_button_home_rank.png");
     rankButton->setScale(1.2f);
-    rankButton->setPosition(Vec2(playButton->getPositionX() - 240, playButton->getPositionY()));
+    rankButton->setPosition(Vec2(playButton->getPositionX() - 280, playButton->getPositionY()));
     rankButton->setPressedActionEnabled(true);
     rankButton->addClickEventListener([=](Ref* sender)
     {

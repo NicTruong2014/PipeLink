@@ -64,7 +64,7 @@ bool SettingsLayer::init()
     auto textureMusic = isMusicOn ? pathMusicOn : pathMusicOff;
 
     soundButton->loadTextures(textureSound, "", textureSound);
-    soundButton->setPosition(Vec2(background->getContentSize().width / 2, background->getContentSize().height / 2 + 20));
+    soundButton->setPosition(Vec2(background->getContentSize().width / 2, background->getContentSize().height / 2 + 5));
     soundButton->setPressedActionEnabled(true);
     soundButton->addClickEventListener([=](Ref* sender)
     {
@@ -90,7 +90,7 @@ bool SettingsLayer::init()
 
     auto musicButton = cocos2d::ui::Button::create();
     musicButton->loadTextures(textureMusic, "", textureMusic);
-    musicButton->setPosition(Vec2(background->getContentSize().width / 2, background->getContentSize().height / 2 - 80 ));
+    musicButton->setPosition(Vec2(background->getContentSize().width / 2, background->getContentSize().height / 2 - 97 ));
     musicButton->setPressedActionEnabled(true);
     musicButton->addClickEventListener([=](Ref* sender)
     {

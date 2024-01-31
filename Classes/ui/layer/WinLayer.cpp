@@ -20,7 +20,7 @@ bool WinLayer::init(int score, int star)
     auto scale = 1.0f;
 
     auto background = ui::Scale9Sprite::create("Sprites/News/popup/pl_popup_win.png");
-    HelperManager::GetInstance()->addLockLayer(this, background);
+    HelperManager::GetInstance()->addLockLayer(this, NULL);
 
     background->setScale(scale);
     background->setName("background");
