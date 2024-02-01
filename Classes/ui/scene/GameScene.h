@@ -68,7 +68,7 @@ private:
 
     int _xScore = 1;
     int _totalTime;
-    float _scale = 1.0f;
+    float _scale = 1;
     int _star;
 
     Sprite* _spriteTop;

@@ -97,7 +97,7 @@ void MainMenuScene::InitUI()
 
     auto settingButton = cocos2d::ui::Button::create("Sprites/News/button_home/pl_button_home_setting.png");
     settingButton->setScale(1.2f);
-    settingButton->setPosition(Vec2(visibleSize.width - 150, visibleSize.height - 150));
+    settingButton->setPosition(Vec2(this->getContentSize().width - settingButton->getContentSize().width, this->getContentSize().height - settingButton->getContentSize().height));
     settingButton->setPressedActionEnabled(true);
     settingButton->addClickEventListener([=](Ref* sender)
     {
@@ -105,5 +105,5 @@ void MainMenuScene::InitUI()
         auto layer = SettingsLayer::create();
         this->addChild(layer);
     });
-    background->addChild(settingButton);
+    this->addChild(settingButton);
 }

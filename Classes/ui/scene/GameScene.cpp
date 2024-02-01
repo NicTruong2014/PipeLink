@@ -47,11 +47,6 @@ void GameScene::StartGame()
 
     _countdown = 3;
 
-    if(Utils::IsIPadAspectRatio())
-    {
-        _scale = 0.66f;
-    }
-
     auto backgroundLayer = cocos2d::LayerColor::create(cocos2d::Color4B(0, 0, 0, 150));
     this->addChild(backgroundLayer);
 
@@ -380,11 +375,11 @@ void GameScene::InitUI()
     auto origin = Director::getInstance()->getVisibleOrigin();
     auto level = DataManager::getInstance()->GetCurrentLevel();
 
-    auto posTopTime = Vec2(-158, 0);
-    auto posTopLevel = Vec2(-424, 0);
-    auto posTopStar = Vec2(160, 0);
-    auto posTopRank = Vec2(508, 0);
-    auto posTopPause = Vec2(758, 0);
+    auto posTopTime = Vec2(-158 * _scale, 0);
+    auto posTopLevel = Vec2(-424 * _scale, 0);
+    auto posTopStar = Vec2(160 * _scale, 0);
+    auto posTopRank = Vec2(508 * _scale, 0);
+    auto posTopPause = Vec2(758 * _scale, 0);
 
     auto bg = Sprite::create("Sprites/News/pl_background_play.png");
     bg->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
@@ -1005,6 +1000,11 @@ bool GameScene::init()
     LevelManager::getInstance()->InitLevel();
     Director::getInstance()->getScheduler()->setTimeScale(1.0f);
     this->scheduleUpdate();
+
+    if (Utils::IsIPadAspectRatio())
+    {
+        _scale = 0.66f;
+    }
 
     InitBackGround();
     InitListener();

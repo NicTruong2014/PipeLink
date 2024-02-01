@@ -125,9 +125,9 @@ public:
     }
 
     static bool IsIPadAspectRatio() {
-#if WIN32
-        return false;
-#endif
+//#if WIN32
+//        return false;
+//#endif
 
         int dpi = Device::getDPI();
         auto director = Director::getInstance()->getVisibleSize();
